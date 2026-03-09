@@ -917,8 +917,8 @@
           <div class="t-output">&nbsp;&nbsp;"plants_configurees": <span style="color:var(--blue)">42</span> }</div>
           <br/>
           <div class="t-line"><span class="t-prompt">▶</span><span class="t-cmd">ls missions/</span></div>
-          <div class="t-output highlight">SP1_custo_sap/&nbsp;&nbsp; SP2_monitoring_btp/</div>
-          <div class="t-output highlight">SP3_support_sap/&nbsp; SP4_migration_us/</div>
+          <div class="t-output highlight">SP1_custo_sap/&nbsp;&nbsp;&nbsp;&nbsp; SP2_monitoring_btp/</div>
+          <div class="t-output highlight">SP3_support_sap/&nbsp;&nbsp; SP4_data_migration/</div>
           <br/>
           <div class="t-line"><span class="t-prompt">▶</span><span class="t-cmd">status --current</span></div>
           <div class="t-output val">✓ Prêt pour l'épreuve E5</div>
@@ -1140,11 +1140,22 @@
         </div>
       </div>
 
+      <div class="sp-card fade-in" onclick="openModal('sp4')">
+        <div class="sp-num">SP — 04</div>
+        <div class="sp-title">Data Migration — Migration vers SAP S/4HANA</div>
+        <div class="sp-client">FMO Consulting › Kering Beauté (Retail Luxe)</div>
+        <p class="sp-desc">Migration des données de l'ancien système de Kering Beauté vers SAP S/4HANA. Réception des fichiers Excel, conversion en CSV, chargement via SAP Fiori (Migrate Your Data), correction des erreurs et rechargement jusqu'à validation complète.</p>
+        <div class="sp-tags">
+          <span class="sp-tag green">SAP Fiori</span>
+          <span class="sp-tag green">Data Migration</span>
+          <span class="sp-tag blue">SAP S/4HANA</span>
+          <span class="sp-tag">Juin 2025</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-
-<!-- FORMATION -->
 <section id="formation">
   <div class="container">
     <div class="section-header fade-in">
@@ -1209,21 +1220,8 @@
         </div>
       </div>
 
-      <div class="sp-card fade-in" onclick="openModal('f5')">
+      <div class="sp-card fade-in" onclick="openModal('f5')" style="grid-column: 1 / -1;">
         <div class="sp-num" style="color:var(--blue)">FORMATION — 05</div>
-        <div class="sp-title">Création d'un site internet — Entreprise fictive</div>
-        <div class="sp-client">CFA ISCIO-EVE › TP Développement Web (B3)</div>
-        <p class="sp-desc">Conception et développement d'un site web vitrine en HTML5/CSS3/JavaScript pour une entreprise fictive. Maquettage, intégration responsive, SEO de base et formulaire de contact.</p>
-        <div class="sp-tags">
-          <span class="sp-tag blue">HTML5 / CSS3</span>
-          <span class="sp-tag blue">JavaScript</span>
-          <span class="sp-tag blue">SEO</span>
-          <span class="sp-tag">11/10/2024</span>
-        </div>
-      </div>
-
-      <div class="sp-card fade-in" onclick="openModal('f6')" style="grid-column: 1 / -1;">
-        <div class="sp-num" style="color:var(--blue)">FORMATION — 06</div>
         <div class="sp-title">Mise en place d'une Veille Informationnelle</div>
         <div class="sp-client">CFA ISCIO-EVE › Développement Professionnel (B6)</div>
         <p class="sp-desc">Mise en place d'une démarche structurée de veille technologique et professionnelle : sélection de sources fiables, outils de curation, comptes-rendus réguliers et partage avec l'équipe pédagogique.</p>
@@ -1302,10 +1300,10 @@
             <td><span class="synth-env form">Formation</span></td>
           </tr>
           <tr>
-            <td>Création site internet (entreprise fictive)</td>
-            <td class="synth-empty">—</td><td class="synth-empty">—</td><td class="synth-check">✓</td>
-            <td class="synth-check">✓</td><td class="synth-empty">—</td><td class="synth-check">✓</td>
-            <td><span class="synth-env form">Formation</span></td>
+            <td>Data Migration — Migration données vers SAP S/4HANA</td>
+            <td class="synth-check">✓</td><td class="synth-check">✓</td><td class="synth-empty">—</td>
+            <td class="synth-check">✓</td><td class="synth-check">✓</td><td class="synth-check">✓</td>
+            <td><span class="synth-env pro">Entreprise</span></td>
           </tr>
           <tr>
             <td>Veille informationnelle</td>
@@ -1526,38 +1524,83 @@ const spData = {
       }
     ]
   },
-  f1: {
-    num: "RÉALISATION EN FORMATION N°01",
-    title: "Installation GLPI sur VM Linux (Debian)",
+  sp4: {
+    num: "SITUATION PROFESSIONNELLE N°04",
+    title: "Data Migration — Migration des données vers SAP S/4HANA",
     meta: [
-      ["Contexte", "TP Systèmes & Services — CFA ISCIO-EVE"],
-      ["Période", "08/09/2025"],
-      ["Environnement", "VirtualBox, Debian Linux, Apache2, MariaDB, PHP, GLPI"],
-      ["Objectif pédagogique", "Déployer un outil ITSM open-source sur un serveur Linux"],
+      ["Contexte", "Alternance — FMO Consulting (mission chez client)"],
+      ["Période", "Fin de première année — Juin 2025"],
+      ["Client / Projet", "Kering Beauté — Migration système legacy vers SAP S/4HANA"],
+      ["Environnement", "SAP Fiori, outil 'Migrate Your Data', fichiers Excel/CSV, SAP S/4HANA"],
     ],
     sections: [
       {
-        title: "Présentation de GLPI",
-        content: `<p><strong style="color:var(--green)">GLPI (Gestionnaire Libre de Parc Informatique)</strong> est un outil open-source de gestion de parc informatique et de helpdesk (ITSM). Il permet de gérer les tickets d'incidents, l'inventaire du matériel, les utilisateurs et les contrats de maintenance.</p>`
+        title: "Problématique et contexte",
+        content: `<p>Dans le cadre de la migration du système d'information de Kering Beauté vers <strong style="color:var(--green)">SAP S/4HANA</strong>, il était nécessaire de transférer les données existantes de l'ancien système vers le nouvel ERP. Ces données (articles, stocks, fournisseurs, clients...) étaient fournies sous forme de fichiers Excel et devaient être chargées proprement dans SAP sans erreur pour garantir la fiabilité du système au moment du go-live.</p>`
       },
       {
-        title: "Environnement mis en place",
+        title: "Démarche mise en oeuvre",
         content: `<ul>
-          <li>Création d'une <strong>machine virtuelle Debian</strong> sous VirtualBox (RAM : 2Go, disque : 20Go)</li>
-          <li>Configuration réseau en <strong>mode pont (bridge)</strong> pour accès depuis la machine hôte</li>
-          <li>Installation du serveur web <strong>Apache2</strong></li>
-          <li>Installation et sécurisation de la base de données <strong>MariaDB</strong> (mysql_secure_installation)</li>
+          <li><strong>Réception des fichiers</strong> : les fichiers de données à migrer arrivaient par mail au format Excel, fournis par l'équipe IT de Kering Beauté</li>
+          <li><strong>Conversion en CSV</strong> : avant chargement, chaque fichier Excel devait être converti au format CSV (séparateur virgule ou point-virgule) compatible avec l'outil SAP de migration</li>
+          <li><strong>Chargement via SAP Fiori</strong> : utilisation de la tuile <code style="color:var(--green);font-family:'Share Tech Mono',monospace">Migrate Your Data</code> dans l'interface SAP Fiori pour importer les fichiers CSV dans SAP S/4HANA</li>
+          <li><strong>Analyse des erreurs</strong> : après chaque tentative de chargement, l'outil générait un rapport d'erreurs indiquant les lignes problématiques et la nature de l'anomalie (champ manquant, format incorrect, référence inexistante...)</li>
+          <li><strong>Correction et rechargement</strong> : je corrigeais les erreurs directement dans le fichier Excel source, reconvertissais en CSV puis relançais le chargement — ce cycle se répétait jusqu'à obtenir un chargement sans erreur</li>
+        </ul>`
+      },
+      {
+        title: "Difficultés rencontrées",
+        content: `<ul>
+          <li>Certaines erreurs nécessitaient de <strong>comprendre la structure des données SAP</strong> pour identifier la bonne correction (ex : format de date, longueur de champ, code inexistant)</li>
+          <li>Les fichiers pouvaient contenir des <strong>centaines de lignes</strong> — localiser rapidement les lignes en erreur demandait de la rigueur</li>
+          <li>Chaque correction devait être <strong>précise</strong> : une mauvaise correction pouvait générer de nouvelles erreurs</li>
+        </ul>`
+      },
+      {
+        title: "Compétences du référentiel",
+        content: `
+          <span class="comp-tag">B1 — Recenser et identifier les ressources numériques (données à migrer)</span>
+          <span class="comp-tag">B1 — Exploiter des référentiels et standards SAP</span>
+          <span class="comp-tag">B2 — Traiter des demandes concernant les applications</span>
+          <span class="comp-tag">B4 — Planifier les activités (cycles correction/rechargement)</span>
+          <span class="comp-tag">B4 — Évaluer les indicateurs de suivi (rapports d'erreurs)</span>
+          <span class="comp-tag">B5 — Déployer un service (mise en production des données)</span>
+          <span class="comp-tag">B6 — Développer son projet professionnel</span>
+        `
+      }
+    ]
+  },
+    f1: {
+    num: "RÉALISATION EN FORMATION N°01",
+    title: "Installation de GLPI sur VM Linux",
+    meta: [
+      ["Contexte", "TP Administration Système — CFA ISCIO-EVE"],
+      ["Période", "08/09/2025"],
+      ["Environnement", "VirtualBox, Debian 12, Apache2, MariaDB, PHP, GLPI"],
+      ["Objectif pédagogique", "Déployer un outil ITSM open-source sur serveur Linux"],
+    ],
+    sections: [
+      {
+        title: "Contexte et objectif",
+        content: `<p>L'objectif de ce TP était d'installer et de configurer <strong style="color:var(--green)">GLPI</strong> (Gestionnaire Libre de Parc Informatique) sur une machine virtuelle Linux sous VirtualBox, afin de mettre en place un système de gestion des tickets d'incidents et d'inventaire de parc informatique.</p>`
+      },
+      {
+        title: "Mise en place de la VM et du serveur",
+        content: `<ul>
+          <li>Création d'une machine virtuelle <strong>Debian 12</strong> sous VirtualBox (2 Go RAM, 20 Go disque)</li>
+          <li>Installation et configuration du serveur web <strong>Apache2</strong></li>
+          <li>Installation de <strong>MariaDB</strong> et sécurisation (mysql_secure_installation)</li>
           <li>Installation de <strong>PHP</strong> et des extensions requises par GLPI</li>
         </ul>`
       },
       {
-        title: "Déploiement de GLPI",
+        title: "Installation de GLPI",
         content: `<ul>
           <li>Téléchargement de l'archive GLPI et décompression dans <code style="color:var(--green);font-family:'Share Tech Mono',monospace">/var/www/html/glpi</code></li>
           <li>Attribution des droits sur les dossiers GLPI : <code style="color:var(--green);font-family:'Share Tech Mono',monospace">chown -R www-data:www-data</code></li>
           <li>Création de la base de données dédiée et d'un utilisateur MariaDB avec les droits appropriés</li>
-          <li>Finalisation de l'installation via l'assistant web (connexion à la BDD, création compte admin)</li>
-          <li>Suppression du fichier <code style="color:var(--green);font-family:'Share Tech Mono',monospace">install/install.php</code> après installation (sécurité)</li>
+          <li>Finalisation de l'installation via l'assistant web (connexion BDD, création compte admin)</li>
+          <li>Suppression du fichier install.php après installation (sécurité)</li>
         </ul>`
       },
       {
@@ -1575,7 +1618,7 @@ const spData = {
           <span class="comp-tag">B1 — Recenser et identifier les ressources numériques</span>
           <span class="comp-tag">B1 — Mettre en place les niveaux d'habilitation</span>
           <span class="comp-tag">B2 — Collecter et orienter des demandes (ITSM)</span>
-          <span class="comp-tag">B4 — Déployer un service</span>
+          <span class="comp-tag">B5 — Déployer un service</span>
           <span class="comp-tag">B5 — Mettre à disposition un service informatique</span>
           <span class="comp-tag">B6 — Développer son projet professionnel</span>
         `
@@ -1750,57 +1793,6 @@ const spData = {
   },
   f5: {
     num: "RÉALISATION EN FORMATION N°05",
-    title: "Création d'un site internet — Entreprise fictive",
-    meta: [
-      ["Contexte", "TP Développement Web — CFA ISCIO-EVE"],
-      ["Période", "11/10/2024"],
-      ["Technologies", "HTML5, CSS3, JavaScript — développement front-end"],
-      ["Objectif pédagogique", "Concevoir et développer un site web vitrine (compétence B3)"],
-    ],
-    sections: [
-      {
-        title: "Contexte et objectif",
-        content: `<p>Ce TP avait pour but de concevoir et développer un <strong style="color:var(--green)">site web vitrine</strong> pour une entreprise fictive, en mobilisant les compétences de la composante B3 du référentiel BTS SIO : valoriser l'image de l'organisation sur les médias numériques et référencer ses services en ligne.</p>`
-      },
-      {
-        title: "Conception et maquettage",
-        content: `<ul>
-          <li>Définition de l'<strong>identité visuelle</strong> de l'entreprise fictive : nom, couleurs, logo, charte graphique</li>
-          <li>Réflexion sur l'<strong>arborescence du site</strong> : pages Accueil, Services, À propos, Contact</li>
-          <li>Maquettage de la structure des pages avant développement</li>
-        </ul>`
-      },
-      {
-        title: "Développement front-end",
-        content: `<ul>
-          <li>Structuration des pages en <strong>HTML5</strong> sémantique (header, nav, main, section, footer)</li>
-          <li>Mise en forme et mise en page avec <strong>CSS3</strong> : flexbox, grille, responsive design (media queries)</li>
-          <li>Intégration d'éléments <strong>interactifs en JavaScript</strong> : menu burger mobile, formulaire de contact avec validation</li>
-          <li>Optimisation de l'affichage sur différents navigateurs (Chrome, Firefox, Edge)</li>
-        </ul>`
-      },
-      {
-        title: "Référencement et visibilité",
-        content: `<ul>
-          <li>Intégration des balises <strong>méta SEO</strong> (title, description, keywords) pour le référencement naturel</li>
-          <li>Structure sémantique HTML favorisant l'<strong>indexation par les moteurs de recherche</strong></li>
-          <li>Optimisation des images (attributs alt, compression) pour les performances</li>
-        </ul>`
-      },
-      {
-        title: "Compétences du référentiel",
-        content: `
-          <span class="comp-tag">B3 — Valoriser l'image de l'organisation sur les médias numériques</span>
-          <span class="comp-tag">B3 — Référencer les services en ligne</span>
-          <span class="comp-tag">B3 — Participer à l'évolution d'un site Web</span>
-          <span class="comp-tag">B4 — Planifier les activités (conception → développement)</span>
-          <span class="comp-tag">B6 — Développer son projet professionnel</span>
-        `
-      }
-    ]
-  },
-  f6: {
-    num: "RÉALISATION EN FORMATION N°06",
     title: "Mise en place d'une Veille Informationnelle",
     meta: [
       ["Contexte", "Développement Professionnel (B6) — CFA ISCIO-EVE"],
@@ -1845,43 +1837,6 @@ const spData = {
           <span class="comp-tag">B6 — Mettre en place son environnement d'apprentissage</span>
           <span class="comp-tag">B6 — Mettre en oeuvre des outils de veille informationnelle</span>
           <span class="comp-tag">B6 — Gérer son identité professionnelle</span>
-          <span class="comp-tag">B6 — Développer son projet professionnel</span>
-        `
-      }
-    ]
-  },
-  sp4: {
-    num: "SITUATION PROFESSIONNELLE N°04",
-    title: "Migration Réseau & Hardware — Filiale US",
-    meta: [
-      ["Contexte", "Alternance — FMO Consulting (mission planifiée 2026)"],
-      ["Période", "2026 — En cours de préparation"],
-      ["Client / Projet", "Filiale américaine d'un client FMO Consulting"],
-      ["Environnement", "Infrastructure LAN/WAN, switchs, routeurs, postes Windows"],
-    ],
-    sections: [
-      {
-        title: "Problématique",
-        content: `<p>Migration complète de l'infrastructure réseau et du parc hardware de la <strong style="color:var(--green)">filiale américaine</strong> d'un client FMO, dans l'objectif de moderniser et d'homogénéiser le SI avec le siège.</p>`
-      },
-      {
-        title: "Travaux préparatoires réalisés",
-        content: `<ul>
-          <li>Inventaire et <strong>audit</strong> de l'infrastructure réseau et hardware existante</li>
-          <li>Analyse des besoins et définition du schéma cible (adressage IP, segmentation réseau)</li>
-          <li>Élaboration du <strong>plan de migration</strong> et du calendrier d'intervention</li>
-          <li>Identification des équipements à remplacer et des risques de la migration</li>
-        </ul>`
-      },
-      {
-        title: "Compétences du référentiel",
-        content: `
-          <span class="comp-tag">B1 — Recenser les ressources numériques</span>
-          <span class="comp-tag">B1 — Vérifier la continuité du service</span>
-          <span class="comp-tag">B2 — Traiter des demandes réseau/système</span>
-          <span class="comp-tag">B4 — Analyser les objectifs d'un projet</span>
-          <span class="comp-tag">B4 — Planifier les activités</span>
-          <span class="comp-tag">B5 — Déployer un service</span>
           <span class="comp-tag">B6 — Développer son projet professionnel</span>
         `
       }
