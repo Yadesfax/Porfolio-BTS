@@ -1475,6 +1475,22 @@ const spData = {
         </ul>`
       },
       {
+        title: "Documentation technique",
+        content: `<a href="Documentation_SP2_BTP_MONTEIRO_Noa.docx" download style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--green);color:#000;font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:700;padding:0.7rem 1.4rem;border-radius:4px;text-decoration:none;margin-top:0.5rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Télécharger la documentation complète (avec captures)
+        </a>`
+      },
+      {
+        title: "Exemple concret d'erreur traitée",
+        content: `<ul>
+          <li><strong>Erreur :</strong> aucun stock disponible pour l'article 5000233 avec le lot D003378</li>
+          <li><strong>Diagnostic :</strong> lecture du Failed Message SAP BTP — objet 20 = lot manquant</li>
+          <li><strong>Correction :</strong> transaction <code style="color:var(--green);font-family:'Share Tech Mono',monospace">VL02N</code> dans SAP — remise du lot correct + picked quantity → sauvegarde + post livraison</li>
+          <li><strong>Validation :</strong> relance du flux BTP — 0 erreur</li>
+        </ul>`
+      },
+      {
         title: "Compétences du référentiel",
         content: `
           <span class="comp-tag">B1 — Vérifier la continuité du service</span>
