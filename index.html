@@ -1457,21 +1457,32 @@ const spData = {
     meta: [
       ["Contexte", "Alternance — FMO Consulting (mission récurrente quotidienne)"],
       ["Période", "Janvier 2025 — Mission quotidienne continue"],
-      ["Client / Projet", "Client FMO utilisant SAP + prestataire logistique FM Logistic"],
-      ["Environnement", "SAP BTP, SAP S/4HANA, MS Teams, Mail, Interfaces EDI"],
+      ["Client / Projet", "Kering Beauté — Groupe Kering (Retail Luxe)"],
+      ["Environnement", "SAP BTP, SAP S/4HANA, SAP GUI (VL02N), FM Logistic (3PL), Mail"],
     ],
     sections: [
       {
-        title: "Problématique",
-        content: `<p>Des flux de données sont échangés quotidiennement entre SAP et le prestataire logistique 3PL FM Logistic. Ces échanges automatisés peuvent générer des <strong style="color:var(--green)">erreurs bloquantes</strong> impactant directement les opérations (livraisons, stocks).</p>`
+        title: "Contexte et problématique",
+        content: `<p>Des flux de données sont échangés quotidiennement entre <strong style="color:var(--green)">SAP S/4HANA</strong> et le prestataire logistique 3PL <strong style="color:var(--green)">FM Logistic</strong> via SAP BTP. Ces échanges gèrent les livraisons, les mouvements de stocks et les confirmations d'expédition. Lorsqu'un flux tombe en erreur, la livraison est bloquée et impacte directement les opérations logistiques de Kering Beauté.</p>`
       },
       {
-        title: "Actions réalisées",
+        title: "Procédure de traitement — étape par étape",
         content: `<ul>
-          <li>Consultation quotidienne du <strong>tableau de bord SAP BTP</strong> pour surveiller les flux (commandes, expéditions, mouvements de stocks)</li>
-          <li>Analyse des messages d'erreur et identification de l'origine (données manquantes, code article inconnu, écart de quantité, mapping erroné)</li>
-          <li>Résolution <strong>autonome</strong> des erreurs de niveau 1 : corrections dans SAP, relance de flux bloqués</li>
-          <li>Rédaction de <strong>mails d'escalade</strong> structurés pour les anomalies complexes : description, références documents impactés, hypothèses</li>
+          <li><strong>Étape 1 — Réception du rapport</strong> : chaque matin je reçois automatiquement par mail un tableau Excel listant les livraisons en erreur (identifiant, code article, type d'anomalie)</li>
+          <li><strong>Étape 2 — Identification dans SAP BTP</strong> : je recherche le flux en erreur via le <code style="color:var(--green);font-family:'Share Tech Mono',monospace">GoodIssue Pickup</code> pour localiser précisément le blocage</li>
+          <li><strong>Étape 3 — Analyse du Failed Message</strong> : je consulte le message d'erreur technique qui indique la cause précise (ex : absence de stock pour un article/lot spécifique)</li>
+          <li><strong>Étape 4 — Correction dans SAP</strong> : transaction <code style="color:var(--green);font-family:'Share Tech Mono',monospace">VL02N</code> — je corrige le lot (batch) et la quantité prélevée, sauvegarde et poste la livraison</li>
+          <li><strong>Étape 5 — Escalade si nécessaire</strong> : si erreur complexe (mapping EDI, écart de stock), je rédige un mail d'escalade structuré vers l'équipe technique FMO ou les référents Kering Beauté</li>
+        </ul>`
+      },
+      {
+        title: "Types d'erreurs rencontrées",
+        content: `<ul>
+          <li><strong>Stock insuffisant</strong> — aucun stock pour l'article/lot → correction VL02N + repost</li>
+          <li><strong>Article inconnu</strong> — code article SAP différent du code FM Logistic → escalade mapping</li>
+          <li><strong>Écart de stock</strong> — quantité confirmée ≠ quantité SAP → analyse + escalade</li>
+          <li><strong>Erreur de lot (batch)</strong> — lot incorrect ou inexistant dans SAP → correction VL02N</li>
+          <li><strong>Erreur de mapping EDI</strong> — problème de correspondance inter-systèmes → escalade équipe technique</li>
         </ul>`
       },
       {
@@ -1546,40 +1557,49 @@ const spData = {
     meta: [
       ["Contexte", "Alternance — FMO Consulting (mission chez client)"],
       ["Période", "Fin de première année — Juin 2025"],
-      ["Client / Projet", "Kering Beauté — Migration système legacy vers SAP S/4HANA"],
-      ["Environnement", "SAP Fiori, outil 'Migrate Your Data', fichiers Excel/CSV, SAP S/4HANA"],
+      ["Client / Projet", "Kering Beauté — Projet POS France — Migration vers SAP S/4HANA"],
+      ["Environnement", "SAP Fiori, Migrate Your Data, fichiers Excel/CSV, SAP S/4HANA"],
     ],
     sections: [
       {
-        title: "Problématique et contexte",
-        content: `<p>Dans le cadre de la migration du système d'information de Kering Beauté vers <strong style="color:var(--green)">SAP S/4HANA</strong>, il était nécessaire de transférer les données existantes de l'ancien système vers le nouvel ERP. Ces données (articles, stocks, fournisseurs, clients...) étaient fournies sous forme de fichiers Excel et devaient être chargées proprement dans SAP sans erreur pour garantir la fiabilité du système au moment du go-live.</p>`
+        title: "Contexte et objectif",
+        content: `<p>Dans le cadre du projet de migration de Kering Beauté vers <strong style="color:var(--green)">SAP S/4HANA</strong>, je suis chargé de transférer les données de l'ancien système vers le nouvel ERP. Ces données (articles, POS, stocks...) sont fournies par mail au format Excel et doivent être chargées via la tuile <strong style="color:var(--green)">Migrate Your Data</strong> de SAP Fiori jusqu'à obtenir 0 erreur.</p>`
       },
       {
-        title: "Démarche mise en oeuvre",
+        title: "Procédure de migration — étape par étape",
         content: `<ul>
-          <li><strong>Réception des fichiers</strong> : les fichiers de données à migrer arrivaient par mail au format Excel, fournis par l'équipe IT de Kering Beauté</li>
-          <li><strong>Conversion en CSV</strong> : avant chargement, chaque fichier Excel devait être converti au format CSV (séparateur virgule ou point-virgule) compatible avec l'outil SAP de migration</li>
-          <li><strong>Chargement via SAP Fiori</strong> : utilisation de la tuile <code style="color:var(--green);font-family:'Share Tech Mono',monospace">Migrate Your Data</code> dans l'interface SAP Fiori pour importer les fichiers CSV dans SAP S/4HANA</li>
-          <li><strong>Analyse des erreurs</strong> : après chaque tentative de chargement, l'outil générait un rapport d'erreurs indiquant les lignes problématiques et la nature de l'anomalie (champ manquant, format incorrect, référence inexistante...)</li>
-          <li><strong>Correction et rechargement</strong> : je corrigeais les erreurs directement dans le fichier Excel source, reconvertissais en CSV puis relançais le chargement — ce cycle se répétait jusqu'à obtenir un chargement sans erreur</li>
+          <li><strong>Étape 1</strong> — Accès à SAP Fiori et recherche de la tuile <code style="color:var(--green);font-family:'Share Tech Mono',monospace">Migrate Your Data</code></li>
+          <li><strong>Étape 2</strong> — Sélection du projet de migration (ex : POS France)</li>
+          <li><strong>Étape 3</strong> — Réception du fichier Excel par mail → conversion en CSV → upload dans SAP Fiori</li>
+          <li><strong>Étape 4</strong> — Contrôle du statut du fichier après upload</li>
+          <li><strong>Étape 5</strong> — Simulation du chargement pour détecter les erreurs sans impacter la production</li>
+          <li><strong>Étape 6</strong> — Migration définitive une fois 0 erreur obtenu</li>
+          <li><strong>Étape 7</strong> — Vérification dans SAP S/4HANA que les données sont bien chargées</li>
         </ul>`
       },
       {
-        title: "Difficultés rencontrées",
+        title: "Gestion des erreurs",
         content: `<ul>
-          <li>Certaines erreurs nécessitaient de <strong>comprendre la structure des données SAP</strong> pour identifier la bonne correction (ex : format de date, longueur de champ, code inexistant)</li>
-          <li>Les fichiers pouvaient contenir des <strong>centaines de lignes</strong> — localiser rapidement les lignes en erreur demandait de la rigueur</li>
-          <li>Chaque correction devait être <strong>précise</strong> : une mauvaise correction pouvait générer de nouvelles erreurs</li>
+          <li>L'outil affiche le rapport d'erreurs avec le numéro de ligne et la nature du problème</li>
+          <li>Je retourne sur le fichier Excel et corrige la ligne concernée</li>
+          <li>Exemple d'erreur récurrente : <strong>format de date incorrect</strong> (JJ/MM/AAAA fourni → MM/JJ/AAAA attendu par SAP)</li>
+          <li>Je reconvertis en CSV et relance la simulation — cycle répété jusqu'à 0 erreur</li>
         </ul>`
+      },
+      {
+        title: "Documentation technique",
+        content: `<a href="Documentation_SP4_DataMigration_MONTEIRO_Noa.pdf" download style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--green);color:#000;font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:700;padding:0.7rem 1.4rem;border-radius:4px;text-decoration:none;margin-top:0.5rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Télécharger la documentation complète (avec captures)
+        </a>`
       },
       {
         title: "Compétences du référentiel",
         content: `
-          <span class="comp-tag">B1 — Recenser et identifier les ressources numériques (données à migrer)</span>
-          <span class="comp-tag">B1 — Exploiter des référentiels et standards SAP</span>
+          <span class="comp-tag">B1 — Recenser et identifier les données à migrer</span>
           <span class="comp-tag">B2 — Traiter des demandes concernant les applications</span>
-          <span class="comp-tag">B4 — Planifier les activités (cycles correction/rechargement)</span>
-          <span class="comp-tag">B4 — Évaluer les indicateurs de suivi (rapports d'erreurs)</span>
+          <span class="comp-tag">B4 — Planifier les activités (cycles simulation/correction)</span>
+          <span class="comp-tag">B4 — Évaluer les indicateurs de suivi (rapport d'erreurs)</span>
           <span class="comp-tag">B5 — Déployer un service (mise en production des données)</span>
           <span class="comp-tag">B6 — Développer son projet professionnel</span>
         `
