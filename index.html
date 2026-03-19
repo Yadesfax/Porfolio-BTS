@@ -1410,48 +1410,55 @@ const spData = {
       ["Contexte", "Alternance — FMO Consulting (mission chez client)"],
       ["Période", "01/09/2025 au 05/11/2025"],
       ["Client / Projet", "Kering Beauté — Groupe Kering (Retail Luxe)"],
-      ["Environnement", "SAP S/4HANA, SAP GUI, Modules MM/SD, SAP HANA DB, SharePoint"],
+      ["Environnement", "SAP S/4HANA, SAP GUI, Modules MM/SD, Transaction WB01, CRD"],
     ],
     sections: [
       {
-        title: "Problématique",
-        content: `<p>Dans le cadre de l'expansion commerciale de Kering Beauté, chaque nouvelle boutique ouvrant sur le territoire devait être configurée comme une <strong style="color:var(--green)">plant distincte</strong> dans SAP S/4HANA afin d'être opérationnelle dès son ouverture physique.</p>`
+        title: "Contexte et objectif",
+        content: `<p>Kering Beauté ouvrait <strong style="color:var(--green)">42 nouvelles boutiques</strong> et chaque boutique devait être configurée comme une <strong style="color:var(--green)">plant SAP</strong> (unité organisationnelle physique) dans S/4HANA. Une plant permet de gérer les stocks, les achats et les ventes de chaque boutique indépendamment. Ma mission : créer ces 42 plants en environnement DEV via SAP GUI en respectant les CRD fournis par l'équipe IT client.</p>`
       },
       {
-        title: "Actions réalisées",
+        title: "Procédure de création — étape par étape",
         content: `<ul>
-          <li>Lecture et analyse du <strong>CRD (Configuration Requirements Document)</strong> fourni par l'équipe IT client</li>
-          <li>Création de la plant dans SAP GUI (transaction WB01) avec plant de référence</li>
-          <li>Configuration des données organisationnelles : Company Code, Purchase Org (KB00), Sales Org (KBFR), Distribution Channel, Division</li>
-          <li>Création du <strong>Business Partner</strong> via "Goto Business Partner" avec le BP Role Grouping approprié (S_CUVN)</li>
-          <li>Tests de validation et mise à jour du statut CRD de "En attente" à "Terminé"</li>
-          <li>Rédaction d'une procédure standardisée partagée sur SharePoint</li>
+          <li><strong>Étape 1</strong> — Transaction <code style="color:var(--green);font-family:'Share Tech Mono',monospace">WB01</code> : saisie de la plant à créer, son type (Store) et la plant de référence <code style="color:var(--green);font-family:'Share Tech Mono',monospace">FR01</code></li>
+          <li><strong>Étape 2</strong> — Saisie des informations du CRD : Company Code (1815), Purchase Org (KB00), Sales Org (KBFR), Distribution Channel (11), Division (01)</li>
+          <li><strong>Étape 3</strong> — Création du Business Partner via "Goto Business Partner" avec le Role Grouping <code style="color:var(--green);font-family:'Share Tech Mono',monospace">S_CUVN</code></li>
+          <li><strong>Étape 4</strong> — Saisie de la plant de référence FR01 → SAP copie automatiquement toutes les tables de customizing</li>
+          <li><strong>Étape 5</strong> — Saisie du nom et de l'adresse de la boutique → confirmation → création de la plant</li>
+          <li><strong>Étape 6</strong> — Mise à jour du CRD : statut "En attente" → "Terminé"</li>
         </ul>`
       },
       {
-        title: "Résultats",
+        title: "Résultats obtenus",
         content: `<ul>
-          <li><strong style="color:var(--green)">42 boutiques</strong> configurées sur la période (septembre – novembre 2025)</li>
-          <li>Délai moyen : <strong>15 à 20 minutes</strong> par plant</li>
+          <li><strong>42 plants créées</strong> sur la période septembre — novembre 2025</li>
+          <li><strong>15 à 20 minutes</strong> par plant en moyenne</li>
           <li><strong>100% des CRD</strong> validés sans retour client</li>
-          <li>Procédure standardisée créée et partagée sur SharePoint</li>
+          <li>42 boutiques <strong>opérationnelles dans SAP</strong> dès leur ouverture physique</li>
+          <li>Procédure standardisée créée et partagée sur <strong>SharePoint</strong></li>
         </ul>`
+      },
+      {
+        title: "Documentation technique",
+        content: `<a href="Documentation_SP1_Custo_SAP_MONTEIRO_Noa.pdf" download style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--green);color:#000;font-family:'Orbitron',monospace;font-size:0.78rem;font-weight:700;padding:0.7rem 1.4rem;border-radius:4px;text-decoration:none;margin-top:0.5rem;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Télécharger la documentation complète (avec captures)
+        </a>`
       },
       {
         title: "Compétences du référentiel",
         content: `
-          <span class="comp-tag">B1 — Recenser les ressources numériques</span>
-          <span class="comp-tag">B1 — Exploiter des référentiels (CRD)</span>
-          <span class="comp-tag">B2 — Traiter des demandes applicatives</span>
-          <span class="comp-tag">B4 — Planifier les activités</span>
-          <span class="comp-tag">B4 — Évaluer les indicateurs de suivi</span>
-          <span class="comp-tag">B5 — Déployer un service</span>
+          <span class="comp-tag">B1 — Recenser et gérer les ressources numériques (plants SAP)</span>
+          <span class="comp-tag">B1 — Exploiter des référentiels et standards SAP</span>
+          <span class="comp-tag">B2 — Traiter des demandes applicatives (CRD)</span>
+          <span class="comp-tag">B4 — Planifier et suivre les activités (suivi CRD)</span>
+          <span class="comp-tag">B5 — Déployer un service (42 boutiques opérationnelles)</span>
           <span class="comp-tag">B6 — Développer son projet professionnel</span>
         `
       }
     ]
   },
-  sp2: {
+    sp2: {
     num: "SITUATION PROFESSIONNELLE N°02",
     title: "Monitoring flux SAP / 3PL FM Logistic via SAP BTP",
     meta: [
