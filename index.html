@@ -283,7 +283,8 @@
     font-family: 'DM Mono', monospace;
     font-size: 0.78rem;
     line-height: 1.9;
-    background: #1e2128;
+    background: #1a1f2e;
+    border-radius: 0 0 12px 12px;
   }
   .t-line { display: flex; gap: 8px; }
   .t-prompt { color: #00b87a; flex-shrink:0; }
@@ -1004,6 +1005,105 @@
     box-shadow: 0 4px 18px rgba(0,102,255,0.35);
   }
 
+  /* ROADMAP TIMELINE */
+  .roadmap-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+  }
+  .roadmap-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.8rem;
+  }
+  .roadmap-steps { display: flex; flex-direction: column; }
+  .roadmap-step {
+    display: flex;
+    gap: 1.2rem;
+    position: relative;
+  }
+  .roadmap-step-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--border);
+    border: 2px solid var(--border-bright);
+    flex-shrink: 0;
+    margin-top: 4px;
+    position: relative;
+    z-index: 1;
+    transition: all 0.2s;
+  }
+  .roadmap-step.active .roadmap-step-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-dim);
+  }
+  .roadmap-step-line {
+    position: absolute;
+    left: 6px;
+    top: 18px;
+    bottom: -8px;
+    width: 2px;
+    background: var(--border);
+  }
+  .roadmap-step-body {
+    padding-bottom: 2rem;
+    flex: 1;
+  }
+  .roadmap-step:last-child .roadmap-step-body { padding-bottom: 0; }
+  .roadmap-step-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .roadmap-step.active .roadmap-step-period { color: var(--accent); }
+  .roadmap-step-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-bright);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+  .roadmap-step-detail {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+  }
+  .roadmap-step-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .roadmap-step-badge.current {
+    background: rgba(0,184,122,0.1);
+    color: #00966b;
+    border: 1px solid rgba(0,184,122,0.25);
+  }
+  .roadmap-step-badge.next {
+    background: var(--accent-dim);
+    color: var(--accent);
+    border: 1px solid rgba(0,102,255,0.2);
+  }
+  .roadmap-step-badge.future {
+    background: var(--bg3);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+  }
+
 </style>
 </head>
 <body>
@@ -1555,26 +1655,42 @@
         </div>
       </div>
       <div class="stat-cards fade-in">
-        <div class="terminal">
-          <div class="terminal-header">
-            <div class="t-dot r"></div><div class="t-dot y"></div><div class="t-dot g"></div>
-            <span class="terminal-title">roadmap.sh — noa@future</span>
-          </div>
-          <div class="terminal-body">
-            <div class="t-line"><span class="t-prompt">▶</span><span class="t-cmd">cat roadmap.txt</span></div>
-            <br/>
-            <div class="t-output" style="color:var(--green)">✓ 2024–2026</div>
-            <div class="t-output val">&nbsp;&nbsp;BTS SIO SISR — FMO Consulting</div>
-            <br/>
-            <div class="t-output" style="color:var(--blue)">→ 2026–2028</div>
-            <div class="t-output val">&nbsp;&nbsp;Master ESGI — Alternance SAP</div>
-            <div class="t-output val">&nbsp;&nbsp;Cible : Accenture</div>
-            <br/>
-            <div class="t-output" style="color:var(--orange)">◈ 2028+</div>
-            <div class="t-output val">&nbsp;&nbsp;Consultant SAP Senior</div>
-            <div class="t-output val">&nbsp;&nbsp;Projets internationaux S/4HANA</div>
-            <br/>
-            <div class="t-output"><span class="t-cursor"></span></div>
+        <div class="roadmap-card">
+          <div class="roadmap-title">Feuille de route</div>
+          <div class="roadmap-steps">
+
+            <div class="roadmap-step active">
+              <div class="roadmap-step-dot"></div>
+              <div class="roadmap-step-line"></div>
+              <div class="roadmap-step-body">
+                <div class="roadmap-step-period">2024 — 2026</div>
+                <div class="roadmap-step-name">BTS SIO SISR</div>
+                <div class="roadmap-step-detail">Alternance — FMO Consulting</div>
+                <span class="roadmap-step-badge current">En cours</span>
+              </div>
+            </div>
+
+            <div class="roadmap-step">
+              <div class="roadmap-step-dot"></div>
+              <div class="roadmap-step-line"></div>
+              <div class="roadmap-step-body">
+                <div class="roadmap-step-period">2026 — 2028</div>
+                <div class="roadmap-step-name">Master ESGI — Informatique</div>
+                <div class="roadmap-step-detail">Alternance SAP — Cible : Accenture</div>
+                <span class="roadmap-step-badge next">Prochain objectif</span>
+              </div>
+            </div>
+
+            <div class="roadmap-step">
+              <div class="roadmap-step-dot"></div>
+              <div class="roadmap-step-body">
+                <div class="roadmap-step-period">2028 et au-delà</div>
+                <div class="roadmap-step-name">Consultant SAP Senior</div>
+                <div class="roadmap-step-detail">Projets S/4HANA à l'international</div>
+                <span class="roadmap-step-badge future">Horizon</span>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -1584,7 +1700,7 @@
 <footer>
   <div class="footer-logo">N.MONTEIRO</div>
   <div class="footer-sub">BTS SIO — SISR — Session 2026 — CFA ISCIO-EVE — FMO Consulting</div>
-  <div style="margin-top:0.8rem; font-family:'Share Tech Mono',monospace; font-size:0.65rem; color:var(--text-dim);">
+  <div style="margin-top:0.8rem; font-family:'DM Mono',monospace; font-size:0.65rem; color:rgba(255,255,255,0.35);">
     Portfolio Épreuve E5 — Situations Professionnelles
   </div>
 </footer>
