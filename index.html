@@ -1507,6 +1507,19 @@
         </div>
       </div>
 
+      <div class="sp-card fade-in" onclick="openModal('f6')">
+        <div class="sp-num" style="color:var(--blue)">FORMATION — 06</div>
+        <div class="sp-title">Cluster DHCP Haute Disponibilité</div>
+        <div class="sp-client">CFA ISCIO-EVE › Projet E6 — Infrastructure réseau</div>
+        <p class="sp-desc">Mise en place d'un cluster DHCP haute disponibilité sous Windows Server. Deux serveurs en partenariat de basculement (failover) avec répartition de charge 50/50, synchronisation automatique des baux et tests de continuité de service.</p>
+        <div class="sp-tags">
+          <span class="sp-tag blue">Windows Server</span>
+          <span class="sp-tag blue">DHCP Failover</span>
+          <span class="sp-tag blue">PowerShell</span>
+          <span class="sp-tag">Déc. 2025</span>
+        </div>
+      </div>
+
       <div class="sp-card fade-in" onclick="openModal('f5')" style="grid-column: 1 / -1;">
         <div class="sp-num" style="color:var(--blue)">FORMATION — 05</div>
         <div class="sp-title">Mise en place d'une Veille Informationnelle</div>
@@ -1885,6 +1898,14 @@ const spData = {
           <span class="comp-tag">B5 — Accompagner les utilisateurs</span>
           <span class="comp-tag">B6 — Développer son projet professionnel</span>
         `
+      },
+      {
+        title: "Documentation annexe — Projet infrastructure",
+        content: `<p style="font-size:0.9rem;color:var(--text);margin-bottom:0.8rem;">En complément du support SAP, j'ai réalisé un projet d'infrastructure réseau : mise en place d'un cluster DHCP haute disponibilité sous Windows Server.</p>
+        <a href="Documentation_Cluster_DHCP_MONTEIRO_Noa.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--accent);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;padding:0.7rem 1.4rem;border-radius:8px;text-decoration:none;box-shadow:0 2px 10px rgba(0,102,255,0.25);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Ouvrir la doc Cluster DHCP Haute Disponibilité
+        </a>`
       }
     ]
   },
@@ -2159,6 +2180,65 @@ const spData = {
           <span class="comp-tag">B2 — Traiter des demandes système</span>
           <span class="comp-tag">B4 — Déployer un service</span>
           <span class="comp-tag">B5 — Mettre à disposition un service informatique</span>
+        `
+      }
+    ]
+  },
+  f6: {
+    num: "RÉALISATION EN FORMATION N°06",
+    title: "Cluster DHCP Haute Disponibilité",
+    meta: [
+      ["Contexte", "Projet E6 — CFA ISCIO-EVE"],
+      ["Période", "Décembre 2025"],
+      ["Environnement", "Windows Server 2019/2022, PowerShell, Console DHCP"],
+      ["Objectif", "Éliminer le point de défaillance unique (SPOF) du service DHCP"],
+    ],
+    sections: [
+      {
+        title: "Problématique",
+        content: `<p>L'entreprise disposait d'un serveur DHCP unique — un <strong style="color:var(--accent)">point de défaillance unique (SPOF)</strong>. En cas de panne, aucune adresse IP ne pouvait être distribuée, bloquant l'intégration de nouveaux équipements et le renouvellement des baux. La solution : un cluster DHCP haute disponibilité avec basculement automatique.</p>`
+      },
+      {
+        title: "Architecture mise en place",
+        content: `<ul>
+          <li><strong>DHCP-SRV1</strong> (192.168.1.10) — Serveur principal</li>
+          <li><strong>DHCP-SRV2</strong> (192.168.1.11) — Serveur secondaire</li>
+          <li>Plage DHCP partagée : 192.168.1.50 → 192.168.1.200</li>
+          <li>Mode failover : <strong>Load Balance 50/50</strong></li>
+          <li>Durée des baux : 8 heures — DNS : 8.8.8.8 / 8.8.4.4</li>
+        </ul>`
+      },
+      {
+        title: "Configuration réalisée (PowerShell)",
+        content: `<ul>
+          <li><strong>Installation</strong> : <code style="color:var(--accent);font-family:'DM Mono',monospace">Install-WindowsFeature -Name DHCP -IncludeManagementTools</code> sur SRV1 et SRV2</li>
+          <li><strong>Étendue DHCP</strong> : création de la plage, exclusions et options (passerelle, DNS)</li>
+          <li><strong>Partenariat failover</strong> : <code style="color:var(--accent);font-family:'DM Mono',monospace">Add-DhcpServerv4Failover</code> avec LoadBalancePercent 50</li>
+          <li><strong>Synchronisation automatique</strong> des baux entre SRV1 et SRV2 en temps réel</li>
+        </ul>`
+      },
+      {
+        title: "Tests de haute disponibilité",
+        content: `<ul>
+          <li>Test 1 — Attribution IP normale : ipconfig /release + /renew → adresse attribuée depuis 192.168.1.50-200</li>
+          <li>Test 2 — Simulation de panne : arrêt de SRV1 → SRV2 continue à distribuer des IPs sans interruption</li>
+          <li>Test 3 — Reprise : redémarrage SRV1 → synchronisation automatique des baux</li>
+        </ul>`
+      },
+      {
+        title: "Documentation technique",
+        content: `<a href="Documentation_Cluster_DHCP_MONTEIRO_Noa.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--accent);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;padding:0.7rem 1.4rem;border-radius:8px;text-decoration:none;box-shadow:0 2px 10px rgba(0,102,255,0.25);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Ouvrir la documentation complète (avec captures)
+        </a>`
+      },
+      {
+        title: "Compétences du référentiel",
+        content: `
+          <span class="comp-tag">B1 — Recenser et gérer les ressources numériques</span>
+          <span class="comp-tag">B1 — Vérifier la continuité d'un service informatique</span>
+          <span class="comp-tag">B4 — Planifier et déployer un projet</span>
+          <span class="comp-tag">B5 — Déployer un service haute disponibilité</span>
         `
       }
     ]
