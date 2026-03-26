@@ -2112,44 +2112,38 @@ const spData = {
     title: "Clé de bootage & Installation Windows 10",
     meta: [
       ["Contexte", "TP Déploiement postes — CFA ISCIO-EVE"],
-      ["Période", "11/03/2025"],
-      ["Environnement", "Rufus, image ISO Windows 10, BIOS/UEFI, machine physique ou VM"],
-      ["Objectif pédagogique", "Maîtriser le déploiement d'un système d'exploitation"],
+      ["Période", "Décembre 2025"],
+      ["Environnement", "Media Creation Tool Microsoft, VirtualBox, clé USB 3.0 8 Go"],
+      ["Objectif pédagogique", "Maîtriser la création d'un support bootable et le déploiement d'un OS"],
     ],
     sections: [
       {
-        title: "Contexte",
-        content: `<p>Ce TP couvre une compétence fondamentale en support informatique : savoir <strong style="color:var(--green)">reinstaller un poste de zéro</strong>. Cela implique de créer un support bootable, de configurer le BIOS/UEFI pour démarrer dessus, puis d'installer et configurer le système d'exploitation.</p>`
+        title: "Contexte et objectif",
+        content: `<p>Ce TP couvre une compétence fondamentale en support informatique : savoir <strong style="color:var(--accent)">créer un support d'installation Windows</strong> et déployer un système d'exploitation. J'ai utilisé l'outil officiel <strong style="color:var(--accent)">Media Creation Tool Microsoft</strong> pour créer la clé bootable, puis testé le boot sur une VM VirtualBox.</p>`
       },
       {
-        title: "Création de la clé USB bootable avec Rufus",
+        title: "Procédure réalisée",
         content: `<ul>
-          <li>Téléchargement de l'<strong>image ISO Windows 10</strong> depuis le site officiel Microsoft</li>
-          <li>Téléchargement et lancement de <strong>Rufus</strong> (outil open-source de création de clés bootables)</li>
-          <li>Sélection du périphérique USB cible et de l'image ISO Windows 10</li>
-          <li>Choix du schéma de partition : <strong>GPT</strong> (pour système UEFI) ou MBR (pour BIOS legacy)</li>
-          <li>Lancement de la création — Rufus formate la clé et écrit l'image bootable (~10-15 min)</li>
+          <li><strong>Phase 1</strong> — Préparation de la clé USB : formatage NTFS, label WINUSB</li>
+          <li><strong>Phase 2</strong> — Téléchargement du Media Creation Tool depuis le site officiel Microsoft</li>
+          <li><strong>Phase 3</strong> — Création de la clé : langue FR, Windows 10 64-bit, lecteur flash USB → téléchargement ~5 Go + création (~15 min)</li>
+          <li><strong>Phase 4</strong> — Test de boot sur VirtualBox : configuration USB, ordre de démarrage, validation de l'écran d'installation Windows 10</li>
         </ul>`
       },
       {
-        title: "Configuration du BIOS/UEFI et démarrage",
+        title: "Difficultés rencontrées",
         content: `<ul>
-          <li>Accès au <strong>BIOS/UEFI</strong> au démarrage de la machine (touche F2, F12, DEL selon constructeur)</li>
-          <li>Modification de l'<strong>ordre de boot</strong> pour démarrer en priorité sur le périphérique USB</li>
-          <li>Désactivation de <strong>Secure Boot</strong> si nécessaire pour permettre le démarrage sur la clé</li>
-          <li>Sauvegarde et redémarrage — la machine boot sur la clé USB Windows</li>
+          <li><strong>Clé non détectée dans VirtualBox</strong> → activation du contrôleur USB + ajout du filtre USB</li>
+          <li><strong>VM ne boot pas sur USB</strong> → USB placé en première position dans l'ordre de démarrage</li>
+          <li><strong>Téléchargement lent</strong> → passage sur câble Ethernet</li>
         </ul>`
       },
       {
-        title: "Installation de Windows 10",
-        content: `<ul>
-          <li>Sélection de la langue, du format et du clavier</li>
-          <li><strong>Partitionnement du disque</strong> : suppression des partitions existantes et création d'une partition principale</li>
-          <li>Installation de Windows 10 sur la partition créée (~20-30 min)</li>
-          <li>Configuration initiale (région, compte, réseau) et création du compte administrateur local</li>
-          <li>Installation des <strong>drivers manquants</strong> (carte graphique, réseau, audio) via le gestionnaire de périphériques</li>
-          <li>Vérification du bon fonctionnement du système via le gestionnaire des tâches et l'observateur d'événements</li>
-        </ul>`
+        title: "Documentation technique",
+        content: `<a href="Documentation_F4_Bootage_Windows10_MONTEIRO_Noa.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--accent);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;padding:0.7rem 1.4rem;border-radius:8px;text-decoration:none;margin-top:0.5rem;box-shadow:0 2px 10px rgba(0,102,255,0.25);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Ouvrir la documentation complète (avec captures)
+        </a>`
       },
       {
         title: "Compétences du référentiel",
@@ -2158,8 +2152,6 @@ const spData = {
           <span class="comp-tag">B2 — Traiter des demandes système</span>
           <span class="comp-tag">B4 — Déployer un service</span>
           <span class="comp-tag">B5 — Mettre à disposition un service informatique</span>
-          <span class="comp-tag">B5 — Accompagner les utilisateurs</span>
-          <span class="comp-tag">B6 — Développer son projet professionnel</span>
         `
       }
     ]
